@@ -43,10 +43,24 @@ while True:
       print(f"\nTotal spent: ${total:.2f}")
 
   elif option == "4":
-    print("Delete Expense Selected.")
+    if len(expenses) == 0:
+      print("No expenses to delete.")
+    else:
+      print("\nYour Expenses:")
+      for i, expense in enumerate(expenses):
+        print(f"{i + 1}. {expense['description']} - ${expense['amount']:.2f}")
+      try:
+        num = int(input("Enter the number of the expense to delete:"))
+        if 1 <= num <= len(expenses):
+          removed = expenses.pop(num - 1)
+          print(f"Deleted: {removed['description']} - ${removed['amount']:.2f}")
+        else:
+          print("Invalid number.")
+      except ValueError:
+        print("Please enter a valid number.")
 
   elif option == "5":
-    print("Quit selected.")
+    print("See ya later.")
     break
 
   else:
