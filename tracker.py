@@ -37,6 +37,10 @@ while True:
     if len(expenses) == 0:
       print("No expenses recorded yet.")
     else:
+      print("\nYour Expenses:")
+      for i, expense in enumerate(expenses):
+        print(f"{i+ 1}. {expense['description']} - ${expense['amount']:.2f}")
+        
       total = 0
       for expense in expenses:
         total += expense["amount"]
