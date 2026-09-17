@@ -1,0 +1,2 @@
+Apples | 2.99
+Bread | 3.0

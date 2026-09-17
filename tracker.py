@@ -1,5 +1,20 @@
 expenses = []
 
+#Load expenses from file when the program starts
+try:
+  with open("expenses.txt", "r") as file:
+    for line in file:
+      line = line.strip()
+      if line:
+        description, amount = line.split(" , ")
+        expenses.append({
+          "description": description,
+          "amount": float(amount)
+        })
+except FileNotFoundError:
+  pass
+
+
 while True:
 
   print("\nExpense Tracker")
@@ -22,6 +37,12 @@ while True:
       }
       expenses.append(expense)
       print("Expense added.")
+
+      #Save to file
+      with open("expenses.txt", "w") as file:
+        for exp in expenses:
+          file.write(f"{exp['description']}, {exp['amount']}\n")
+
     except ValueError:
       print("Invalid amount. Please enter a number.")
 
@@ -40,7 +61,7 @@ while True:
       print("\nYour Expenses:")
       for i, expense in enumerate(expenses):
         print(f"{i+ 1}. {expense['description']} - ${expense['amount']:.2f}")
-        
+
       total = 0
       for expense in expenses:
         total += expense["amount"]
@@ -58,14 +79,20 @@ while True:
         if 1 <= num <= len(expenses):
           removed = expenses.pop(num - 1)
           print(f"Deleted: {removed['description']} - ${removed['amount']:.2f}")
+
+          #Save to file
+          with open("expenses.txt", "w") as file:
+            for exp in expenses:
+              file.write(f"{exp['description']}, {exp['amount']}\n")
+
         else:
           print("Invalid number.")
       except ValueError:
         print("Please enter a valid number.")
 
   elif option == "5":
-    print("See ya later.")
+    print("See ya later")
     break
 
   else:
-    print("Invalid number. Please enter a number from 1-5.")
+    print("Invalid number. Please enter a number from 1 to 5.")
