@@ -13,7 +13,7 @@ while True:
 
   if option == "1":
     description = input("Enter expense description: ")
-    amount_text = input("Enter amount: ")
+    amount_text = input("Enter amount: $")
     try:
       amount = float(amount_text)
       expense ={
@@ -29,12 +29,18 @@ while True:
     if len(expenses) == 0:
       print("No expenses recorded yet.")
     else:
-      print("\nYour Expenses:")
+      print("\nYour Expenses: ")
       for i, expense in enumerate(expenses):
         print(f"{i + 1}. {expense['description']} - ${expense['amount']:.2f}")
 
   elif option == "3":
-    print("Show Total Selected.")
+    if len(expenses) == 0:
+      print("No expenses recorded yet.")
+    else:
+      total = 0
+      for expense in expenses:
+        total += expense["amount"]
+      print(f"\nTotal spent: ${total:.2f}")
 
   elif option == "4":
     print("Delete Expense Selected.")
