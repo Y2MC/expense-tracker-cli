@@ -12,7 +12,18 @@ while True:
   option = input("Select an option from 1-5:")
 
   if option == "1":
-    print("Add Expense Selected.")
+    description = input("Enter expense description: ")
+    amount_text = input("Enter amount: ")
+    try:
+      amount = float(amount_text)
+      expense ={
+        "description": description,
+        "amount": amount
+      }
+      expenses.append(expense)
+      print("Expense added.")
+    except ValueError:
+      print("Invalid amount. Please enter a number.")
 
   elif option =="2":
     print("View Expenses Selected.")
