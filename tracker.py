@@ -26,7 +26,12 @@ while True:
       print("Invalid amount. Please enter a number.")
 
   elif option =="2":
-    print("View Expenses Selected.")
+    if len(expenses) == 0:
+      print("No expenses recorded yet.")
+    else:
+      print("\nYour Expenses:")
+      for i, expense in enumerate(expenses):
+        print(f"{i + 1}. {expense['description']} - ${expense['amount']:.2f}")
 
   elif option == "3":
     print("Show Total Selected.")
